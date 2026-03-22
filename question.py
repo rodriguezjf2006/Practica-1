@@ -1,4 +1,5 @@
 import random
+import string
 
 words = [
     "python",
@@ -36,18 +37,23 @@ while attempts > 0:
     print(f"Intentos restantes: {attempts}")
     print(f"Letras usadas: {', '.join(guessed)}")
 
-    letter = input("Ingresá una letra: ")
+    # Si el caracter ingresado es mayuscula la paso a minuscula
+    letter = (input("Ingresá una letra: ")).lower
 
-    if letter in guessed:
-        print("Ya usaste esa letra.")
-    elif letter in word:
-        guessed.append(letter)
-        print("¡Bien! Esa letra está en la palabra.")
+    # Verifico si el caracter es valido o no
+    if (letter in string.ascii_lowercase) and (letter!=""):
+        if letter in guessed:
+            print("Ya usaste esa letra.")
+        elif letter in word:
+            guessed.append(letter)
+            print("¡Bien! Esa letra está en la palabra.")
+        else:
+            guessed.append(letter)
+            attempts -= 1
+            print("Esa letra no está en la palabra.")
     else:
-        guessed.append(letter)
-        attempts -= 1
-        print("Esa letra no está en la palabra.")
-  
+        print("entrada no valida")
+        
     print()
 
 else:
